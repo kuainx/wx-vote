@@ -46,14 +46,43 @@ const init = async () => {
 
 }
 init()
-const share = () => {
-  alert('点击右上角分享')
-}
+const goBack = () => {
+  if (window.user_data.currentVote > 0) {
+    window.user_data.currentVote--;
+    init()
+  } else {
+    alert('已是第一个');
+  }
+};
+
+const goForward = () => {
+  if (window.user_data.currentVote < window.user_data.voteList.length - 1) {
+    window.user_data.currentVote++;
+    init()
+  } else {
+    alert('已是最后一个');
+  }
+};
+
 </script>
 
 <template>
   <div style="height:100px"></div>
   <h2 style="color:#f1f1f1">欢迎 {{ user }}，来投票</h2>
+  <div style="width:300px;margin:auto">
+    <div style="margin:5px">
+      <a-input v-model:value="nick" placeholder="输入姓名">
+        <template #prefix>
+          <user-outlined type="user" />
+        </template>
+        <template #suffix>
+          <a-tooltip title="输入姓名">
+            <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+          </a-tooltip>
+        </template>
+      </a-input>
+    </div>
+  </div>
   <div class="card">
     <a-card :title="title" style="width: 300px;margin:auto">
       <h3>已有{{ num }}人参与</h3>
@@ -62,26 +91,21 @@ const share = () => {
           <a-radio class="ratio" v-for="item in option" :value="item.id">{{ item.content }}</a-radio>
         </a-radio-group>
       </div>
+
       <div style="margin:5px">
-        <a-input v-model:value="nick" placeholder="输入姓名">
-          <template #prefix>
-            <user-outlined type="user" />
-          </template>
-          <template #suffix>
-            <a-tooltip title="输入姓名">
-              <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
-            </a-tooltip>
-          </template>
-        </a-input>
-      </div>
-      <div style="margin:5px">
-        <a-button :disabled="disable" type="primary" @click="submit">提交</a-button>
+        <a-button-group>
+          <a-button type="primary" @click="goBack">
+            <a-icon type="left" />上一个
+          </a-button>
+          <a-button :disabled="disable" type="primary" @click="submit">提交</a-button>
+          <a-button type="primary" @click="goForward">
+            下一个
+            <a-icon type="right" />
+          </a-button>
+        </a-button-group>
       </div>
       <div style="margin:5px">
         <a-input v-model:value="link" class="share-link" />
-      </div>
-      <div style="margin:5px">
-        <a-button type="primary" @click="share">分享</a-button>
       </div>
     </a-card>
   </div>

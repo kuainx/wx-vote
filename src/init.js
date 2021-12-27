@@ -10,7 +10,9 @@ export const init = () => {
   } else {
     const user_data = {
       user: urlObj.searchParams.get('user'),
+      voteList: urlObj.searchParams.get('vote').split('*'),
       vote: urlObj.searchParams.get('vote'),
+      currentVote: 0,
     };
     window.user_data = user_data;
   }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getVote = async () => {
-  const r = await axios.post('?t=getvote', 'voteid=' + window.user_data.vote);
+  const r = await axios.post('?t=getvote', 'voteid=' + window.user_data.voteList[window.user_data.currentVote]);
   const r1 = r.data;
   if (r1.status !== 0) {
     alert(r1.ret);
