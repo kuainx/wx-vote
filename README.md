@@ -1,7 +1,9 @@
-# Vue 3 + Vite
+# wx-vote
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+demo:`https://lifestudio.cn/vote/?vote=1*2*test`
 
-## Recommended IDE Setup
+关注微信公众号投票
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+支持自定义投票代号（防猜测）
+
+支持自定义投票开始结束时间
